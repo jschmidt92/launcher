@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --black: #000000;
+  --red: #991b1b;
+  --red-light: #dc2626;
+  --sky: #38bdf8;
+  --white: #ffffff;
+  --zinc-light: #71717a;
+  --zinc-medium: #52525b;
+  --zinc-dark: #27272a;
+  --zinc-darker: #18181b;
+}
+
+body {
+  background: right / contain no-repeat url("/ion-pmc.png"), var(--zinc-darker);
+  color: var(--white);
+  height: 100vh;
+}

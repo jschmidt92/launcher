@@ -1,0 +1,114 @@
+{
+  "tabs": [
+    {
+      "id": "tab1",
+      "name": "Community"
+    },
+    {
+      "id": "tab2",
+      "name": "Knowledgebase"
+    },
+    {
+      "id": "tab3",
+      "name": "Feed"
+    },
+    {
+      "id": "tab4",
+      "name": "Patch Notes"
+    }
+  ],
+  "items": {
+    "tab1": [
+      {
+        "id": 1,
+        "title": "Blog 1",
+        "summary": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor accusantium ea cupiditate modi reiciendis harum consequatur labore quis!",
+        "link": "Read More",
+        "image": "https://placehold.co/600x400/18181b/FFFFFF/png"
+      },
+      {
+        "id": 2,
+        "title": "Blog 2",
+        "summary": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor accusantium ea cupiditate modi reiciendis harum consequatur labore quis!",
+        "link": "Read More",
+        "image": "https://placehold.co/600x400/18181b/FFFFFF/png"
+      },
+      {
+        "id": 3,
+        "title": "Join the Discussion",
+        "summary": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor accusantium ea cupiditate modi reiciendis harum consequatur labore quis!",
+        "link": "Discord",
+        "image": ""
+      }
+    ],
+    "tab2": [
+      {
+        "id": 4,
+        "title": "Player Guide",
+        "summary": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor accusantium ea cupiditate modi reiciendis harum consequatur labore quis!",
+        "link": "Learn to Play",
+        "image": "https://placehold.co/600x400/18181b/FFFFFF/png"
+      },
+      {
+        "id": 5,
+        "title": "Development",
+        "summary": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor accusantium ea cupiditate modi reiciendis harum consequatur labore quis!",
+        "link": "Knowledge Base",
+        "image": ""
+      }
+    ],
+    "tab3": [
+      {
+        "id": 6,
+        "title": "Item 1",
+        "summary": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor accusantium ea cupiditate modi reiciendis harum consequatur labore quis!",
+        "link": "Read More",
+        "image": ""
+      },
+      {
+        "id": 7,
+        "title": "Item 2",
+        "summary": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor accusantium ea cupiditate modi reiciendis harum consequatur labore quis!",
+        "link": "Read More",
+        "image": ""
+      },
+      {
+        "id": 8,
+        "title": "Item 3",
+        "summary": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor accusantium ea cupiditate modi reiciendis harum consequatur labore quis!",
+        "link": "Read More",
+        "image": ""
+      },
+      {
+        "id": 9,
+        "title": "Item 4",
+        "summary": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor accusantium ea cupiditate modi reiciendis harum consequatur labore quis!",
+        "link": "Read More",
+        "image": ""
+      },
+      {
+        "id": 10,
+        "title": "Item 5",
+        "summary": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor accusantium ea cupiditate modi reiciendis harum consequatur labore quis!",
+        "link": "Read More",
+        "image": ""
+      }
+    ],
+    "tab4": [
+      {
+        "id": 11,
+        "title": "SOF Framework v1.0",
+        "summary": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor accusantium ea cupiditate modi reiciendis harum consequatur labore quis!",
+        "link": "Read More",
+        "image": "https://placehold.co/600x400/18181b/FFFFFF/png"
+      },
+      {
+        "id": 12,
+        "title": "Report a Bug",
+        "summary": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor accusantium ea cupiditate modi reiciendis harum consequatur labore quis!",
+        "link": "Report Bug",
+        "image": ""
+      }
+    ]
+  }
+}
