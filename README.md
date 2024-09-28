@@ -1,14 +1,16 @@
-# launcher
+# SOF Launcher
+Welcome to SOF's Arma 3 Game Launcher
 
-🥳 Really simple `Electron` + `Vue` + `Vite` boilerplate.
-
-[![GitHub Build](https://github.com/jschmidt92/launcher/actions/workflows/build.yml/badge.svg)](https://github.com/jschmidt92/launcher/actions/workflows/build.yml)
+[![GitHub Release](https://img.shields.io/github/v/release/jschmidt92/launcher?label=latest%C2%A0release)](https://github.com/jschmidt92/launcher/releases/latest)
 [![GitHub Discord](https://img.shields.io/badge/chat-discord-blue?logo=discord)](https://discord.gg/tcNBB2Sb)
+[![GitHub Issues](https://img.shields.io/github/issues/jschmidt92/launcher)](https://github.com/jschmidt92/launcher/issues)
+[![GitHub Build](https://github.com/jschmidt92/launcher/actions/workflows/build.yml/badge.svg)](https://github.com/jschmidt92/launcher/actions/workflows/build.yml)
 
 ## Features
 
 📦 Out of the box  
 🎯 Based on the official [template-vue-ts](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-vue-ts), less invasive  
+🥳 Really simple `Electron` + `Vue` + `Vite` boilerplate  
 🌱 Extensible, really simple directory structure  
 💪 Support using Node.js API in Electron-Renderer  
 🔩 Support C/C++ native addons  
