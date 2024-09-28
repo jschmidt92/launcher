@@ -44,6 +44,11 @@ const host = {
   port: 80,
   mods: [
     {
+      path: "/dragonfly.zip",
+      versionKey: "dragonfly_version",
+      versionUrl: "/dragonfly_version.json",
+    },
+    {
       path: "/sof_client.zip",
       versionKey: "sof_client_version",
       versionUrl: "/sof_client_version.json",
