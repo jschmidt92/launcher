@@ -11,7 +11,6 @@
     "dist",
     "dist-electron"
   ],
-  "icon": "favicon.ico",
   "mac": {
     "target": [
       "dmg"
