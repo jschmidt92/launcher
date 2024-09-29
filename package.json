@@ -23,7 +23,7 @@
     "dev": "vite",
     "build": "rimraf release && vue-tsc --noEmit && vite build && electron-builder",
     "preview": "vite preview",
-    "publish": "electron-builder --win -p always"
+    "publish": "vue-tsc --noEmit && vite build && electron-builder -p always"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
