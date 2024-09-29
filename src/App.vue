@@ -1,12 +1,17 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import SidebarButtons from "./components/SidebarButtons.vue";
 import ProgressBar from "./components/ProgressBar.vue";
 import ServerStatus from "./components/ServerStatus.vue";
 import SettingsModal from "./components/SettingsModal.vue";
 import TabSection from "./components/TabSection.vue";
 
+const appVersion = ref("");
 const showModal = ref(false);
+
+onMounted(async () => {
+  appVersion.value = await window.electronAPI.getAppVersion();
+})
 </script>
 
 <template>
@@ -21,7 +26,12 @@ const showModal = ref(false);
         <ServerStatus />
       </div>
       <div class="flex flex-col w-2/3 p-4">
-        <div class="flex flex-row flex-grow items-start justify-end">
+        <div class="flex flex-row flex-grow items-start justify-between">
+            <div class="bg-zinc-900/25 shadow-md rounded-lg px-3 py-1">
+              <p class="text-white text-xs font-semibold">
+                Version: <span class="text-[#fde68a]">{{ appVersion }}</span>
+              </p>
+            </div>
           <div class="cursor-pointer" @click="showModal = true">
             <svg xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6 text-white hover:text-[#fde68a] transition-colors duration-300" fill="none"

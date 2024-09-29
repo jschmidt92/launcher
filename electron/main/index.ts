@@ -32,7 +32,6 @@ let isGameRunning = false;
 let isQuiting: boolean;
 let settingsData: any;
 let tray: Tray;
-let version = "-1";
 
 const { autoUpdater } = pkg;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -101,8 +100,7 @@ if (!app.requestSingleInstanceLock()) {
 let win: BrowserWindow | null = null;
 const preload = path.join(__dirname, "../preload/index.mjs");
 const indexHtml = path.join(RENDERER_DIST, "index.html");
-
-
+const icon = path.join(process.env.VITE_PUBLIC, "favicon.ico");
 
 function fetchFileVersion(file: any) {
   return new Promise((resolve, reject) => {
@@ -212,7 +210,6 @@ async function getServerStatus(serverIP: string, serverPort: number) {
       }
     })
     .catch((error: Error) => {
-      // log.error(`Failed to get server status: ${error}`);
       win.webContents.send("server-down", { download: false });
     });
 }
@@ -258,8 +255,6 @@ function initSettings() {
     serverIP: "127.0.0.1",
     serverPort: 2302,
     serverPassword: "",
-    version: "-1",
-    last_modified: "-1",
   };
 
   if (fs.existsSync(sPath)) {
@@ -272,13 +267,6 @@ function initSettings() {
     fs.writeFileSync(sPath, JSON.stringify(defaultSettings, null, 2));
     settingsData = defaultSettings;
   }
-
-  const vPath = path.join(settingsData.arma3path, "SOF", "Version");
-  if (fs.existsSync(vPath)) {
-    version = fs.readFileSync(vPath, "utf8");
-  }
-
-  settingsData.version = version.toString();
 }
 
 function showNotification(NOTIF_TITLE: string, NOTIF_BODY: string) {
@@ -290,13 +278,9 @@ function showNotification(NOTIF_TITLE: string, NOTIF_BODY: string) {
   }).show();
 }
 
-initSettings();
-
 log.transports.file.resolvePathFn = () =>
   path.join(app.getPath("userData"), "logs/main.log");
 log.log("Appliation Version v" + app.getVersion());
-
-settingsData.version = version.toString();
 
 async function createWindow() {
   win = new BrowserWindow({
@@ -345,19 +329,21 @@ async function createWindow() {
     }
     return false;
   });
+
+  win.webContents.on("did-finish-load", () => {
+    win.webContents.send("app-version", app.getVersion());
+  });
 }
 
 app
   .whenReady()
   .then(() => {
+    initSettings();
     createWindow();
-    autoUpdater.checkForUpdatesAndNotify()
+    autoUpdater.checkForUpdatesAndNotify();
   })
   .then(() => {
-    const icon = nativeImage.createFromPath(
-      path.join(process.env.VITE_PUBLIC, "favicon.ico")
-    );
-    tray = new Tray(icon);
+    tray = new Tray(nativeImage.createFromPath(icon));
     const contextMenu = Menu.buildFromTemplate([
       {
         label: "Quit",
@@ -405,7 +391,6 @@ app.on("before-quit", () => {
   tray.destroy();
 });
 
-const icon = path.join(process.env.VITE_PUBLIC, "favicon.ico");
 app.getFileIcon(icon);
 app.setAppUserModelId(process.execPath);
 
@@ -425,6 +410,10 @@ app.setAppUserModelId(process.execPath);
 //     childWindow.loadFile(indexHtml, { hash: arg });
 //   }
 // });
+
+ipcMain.handle("get-app-version", () => {
+  return app.getVersion();
+});
 
 ipcMain.on("download", async (_, data: GameData) => {
   const modsDir = path.join(app.getPath("userData"), "mods");
