@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from "vue";
-import { GamedigState } from "../types";
+import { GameDigState } from "../types";
 import { useServerStore } from "../stores/server";
 import { useSettingsStore } from "../stores/settings";
 
@@ -15,7 +15,7 @@ const serverStore = useServerStore();
 const settingsStore = useSettingsStore();
 const isServerUp = computed(() => serverStore.isServerUp);
 
-function handleServerUp(_: Electron.IpcRendererEvent, state: GamedigState) {
+function handleServerUp(_: Electron.IpcRendererEvent, state: GameDigState) {
     serverStore.setServerStatus(true);
     serverName.value = state.name;
     numPlayers.value = state.numplayers;

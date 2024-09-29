@@ -3,6 +3,6 @@ export interface SettingsData {
   serverIP: string;
   serverPort: number;
   serverPassword: string;
-  version: string;
-  last_modified: string;
+  version?: string;
+  last_modified?: string;
 }

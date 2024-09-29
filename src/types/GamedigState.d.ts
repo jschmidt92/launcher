@@ -1,4 +1,4 @@
-export interface GamedigState {
+export interface GameDigState {
   name: string;
   map: string;
   password: boolean;

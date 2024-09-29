@@ -1,5 +1,5 @@
 import { ipcRenderer, contextBridge } from "electron";
-import { JoinGame, LaunchGame, OpenGame, Settings } from "../../src/types";
+import { GameData, SettingsData } from "../../src/types";
 
 // --------- Expose some API to the Renderer process ---------
 contextBridge.exposeInMainWorld("ipcRenderer", {
@@ -40,16 +40,16 @@ contextBridge.exposeInMainWorld("electronAPI", {
   ) {
     ipcRenderer.on("download-progress", callback);
   },
-  joinGame(joinGame: JoinGame) {
+  joinGame(joinGame: GameData) {
     ipcRenderer.send("download", joinGame);
   },
-  launchGame(launchGame: LaunchGame) {
+  launchGame(launchGame: GameData) {
     ipcRenderer.send("download", launchGame);
   },
   openDirectory() {
     return ipcRenderer.invoke("open-directory");
   },
-  openGame(openGame: OpenGame) {
+  openGame(openGame: GameData) {
     ipcRenderer.send("launch-game", openGame);
     ipcRenderer.send("minimize");
   },
@@ -82,7 +82,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
   serverUp(callback: (_: Electron.IpcRendererEvent, ...args: any[]) => void) {
     ipcRenderer.on("server-up", callback);
   },
-  updateSettings(settings: Settings) {
+  updateSettings(settings: SettingsData) {
     return ipcRenderer.invoke("update-settings", settings);
   },
 });

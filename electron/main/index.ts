@@ -20,11 +20,11 @@ import * as fs from "fs";
 import * as http from "http";
 import extract from "extract-zip";
 import log from "electron-log";
+import pkg from "electron-updater";
 import {
   DownloadProgress,
   GameData,
   ModInfo,
-  Settings,
   SettingsData,
 } from "../../src/types";
 
@@ -34,6 +34,7 @@ let settingsData: any;
 let tray: Tray;
 let version = "-1";
 
+const { autoUpdater } = pkg;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dlServerUp = true;
 // const require = createRequire(import.meta.url);
@@ -100,6 +101,8 @@ if (!app.requestSingleInstanceLock()) {
 let win: BrowserWindow | null = null;
 const preload = path.join(__dirname, "../preload/index.mjs");
 const indexHtml = path.join(RENDERER_DIST, "index.html");
+
+
 
 function fetchFileVersion(file: any) {
   return new Promise((resolve, reject) => {
@@ -240,7 +243,7 @@ function launchGame(data: GameData) {
   });
 }
 
-async function updateSettings(settings: Settings) {
+async function updateSettings(settings: SettingsData) {
   settingsData = {
     ...settingsData,
     ...settings,
@@ -348,6 +351,7 @@ app
   .whenReady()
   .then(() => {
     createWindow();
+    autoUpdater.checkForUpdatesAndNotify()
   })
   .then(() => {
     const icon = nativeImage.createFromPath(
