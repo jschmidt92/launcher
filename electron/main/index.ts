@@ -100,7 +100,7 @@ if (!app.requestSingleInstanceLock()) {
 let win: BrowserWindow | null = null;
 const preload = path.join(__dirname, "../preload/index.mjs");
 const indexHtml = path.join(RENDERER_DIST, "index.html");
-const icon = path.join(process.env.VITE_PUBLIC, "favicon.ico");
+const icon = path.join(process.env.VITE_PUBLIC, "icon.ico");
 
 function fetchFileVersion(file: any) {
   return new Promise((resolve, reject) => {
@@ -270,7 +270,7 @@ function initSettings() {
 }
 
 function showNotification(NOTIF_TITLE: string, NOTIF_BODY: string) {
-  const NOTIF_ICON = path.join(process.env.VITE_PUBLIC, "favicon.ico");
+  const NOTIF_ICON = path.join(process.env.VITE_PUBLIC, "icon.ico");
   new Notification({
     title: NOTIF_TITLE,
     body: NOTIF_BODY,
@@ -285,7 +285,7 @@ log.log("Appliation Version v" + app.getVersion());
 async function createWindow() {
   win = new BrowserWindow({
     title: "PMC Simulator 3.0",
-    icon: path.join(process.env.VITE_PUBLIC, "favicon.ico"),
+    icon: path.join(process.env.VITE_PUBLIC, "icon.ico"),
     width: 1280,
     height: 720,
     autoHideMenuBar: true,
