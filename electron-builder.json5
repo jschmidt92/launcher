@@ -18,16 +18,16 @@
       filter: ["**/*"]
     }
   ],
-  icon: "favicon.png",
+  // icon: "favicon.png",
   "mac": {
-    icon: "/favicon.png",
+    // icon: "/favicon.png",
     "target": [
       "dmg"
     ],
     "artifactName": "${productName}-Mac-${version}-Installer.${ext}"
   },
   "win": {
-    icon: "favicon.ico",
+    // icon: "favicon.ico",
     "target": [
       {
         "target": "nsis",
@@ -45,7 +45,7 @@
     "deleteAppDataOnUninstall": false
   },
   "linux": {
-    "icon": "favicon.png",
+    // "icon": "favicon.png",
     "target": [
       "AppImage"
     ],
