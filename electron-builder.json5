@@ -13,11 +13,12 @@
   ],
   "extraResources": [
     {
-      from: "public",
-      to: "",
+      from: "build/icons",
+      to: "icons/",
       filter: ["**/*"]
     }
   ],
+  "icon": "build/icons/icon.png",
   "mac": {
     "target": [
       "dmg"
@@ -25,7 +26,7 @@
     "artifactName": "${productName}-Mac-${version}-Installer.${ext}"
   },
   "win": {
-    "icon": "resources/favicon.ico",
+    "icon": "build/icons/icon.ico",
     "target": [
       {
         "target": "nsis",
@@ -43,7 +44,7 @@
     "deleteAppDataOnUninstall": false
   },
   "linux": {
-    "icon": "resources/favicon.png",
+    "icon": "build/icons/icon.png",
     "target": [
       "AppImage"
     ],
