@@ -48,42 +48,71 @@ onMounted(() => {
     <Teleport to="body">
         <modal :show="props.show" @close="closeModal">
             <template #header>
-                <h2 class="text-xl font-semibold">Settings</h2>
+                <h2 class="settings-title">Settings</h2>
             </template>
             <template #body>
                 <form @submit.prevent="saveServerSettings">
-                    <div class="flex mb-2">
-                        <input type="text" v-model="arma3path" placeholder="Path to Arma 3 Game Folder"
-                            class="flex-grow px-3 py-2 bg-[#161618] text-white text-xs border-[#fde68a50]" />
-                        <button type="button" @click="browseAndSetArma3Path"
-                            class="bg-[#fde68a] text-black text-sm font-semibold px-4 py-2 relative transition-all duration-300 hover:text-white hover:shadow-[0_0_15px_rgba(253,230,138,0.5)] group">
-                            <span class="relative z-10">Browse</span>
-                            <div
-                                class="absolute inset-0 bg-[#fde68a] opacity-0 group-hover:opacity-50 transition-opacity duration-300">
-                            </div>
+                    <div class="input-group">
+                        <input type="text" v-model="arma3path" placeholder="Path to Arma 3 Game Folder" class="input-field" />
+                        <button type="button" @click="browseAndSetArma3Path" class="browse-button">
+                            <span class="button-text">Browse</span>
+                            <div class="button-overlay"></div>
                         </button>
                     </div>
-                    <div class="mb-2">
-                        <input type="text" v-model="serverIP" placeholder="Server IP"
-                            class="w-full px-3 py-2 bg-[#161618] text-white text-xs border-[#fde68a50]" />
+                    <div class="input-wrapper">
+                        <input type="text" v-model="serverIP" placeholder="Server IP" class="input-field" />
                     </div>
-                    <div class="mb-2">
-                        <input type="text" v-model="serverPort" placeholder="Server Port"
-                            class="w-full px-3 py-2 bg-[#161618] text-white text-xs border-[#fde68a50]" />
+                    <div class="input-wrapper">
+                        <input type="text" v-model="serverPort" placeholder="Server Port" class="input-field" />
                     </div>
-                    <div class="mb-2">
-                        <input type="password" v-model="serverPassword" placeholder="Server Password"
-                            class="w-full px-3 py-2 bg-[#161618] text-white text-xs border-[#fde68a50]" />
+                    <div class="input-wrapper">
+                        <input type="password" v-model="serverPassword" placeholder="Server Password" class="input-field" />
                     </div>
-                    <button type="submit"
-                        class="bg-[#fde68a] text-black text-sm font-semibold px-4 py-2 w-full relative transition-all duration-300 hover:text-white hover:shadow-[0_0_15px_rgba(253,230,138,0.5)] group">
-                        <span class="relative z-10">Save Settings</span>
-                        <div
-                            class="absolute inset-0 bg-[#fde68a] opacity-0 group-hover:opacity-50 transition-opacity duration-300">
-                        </div>
+                    <button type="submit" class="save-button">
+                        <span class="button-text">Save Settings</span>
+                        <div class="button-overlay"></div>
                     </button>
                 </form>
             </template>
         </modal>
     </Teleport>
 </template>
+
+<style scoped>
+.settings-title {
+    @apply text-xl font-semibold;
+}
+
+.input-group {
+    @apply flex mb-2;
+}
+
+.input-wrapper {
+    @apply mb-2;
+}
+
+.input-field {
+    @apply w-full px-3 py-2 bg-[#161618] text-white text-xs border-[#fde68a50];
+}
+
+.browse-button, .save-button {
+    @apply bg-[#fde68a] text-black text-sm font-semibold px-4 py-2 relative transition-all duration-300 hover:text-white hover:shadow-[0_0_15px_rgba(253,230,138,0.5)];
+}
+
+.browse-button:hover .button-overlay, 
+.save-button:hover .button-overlay {
+    @apply opacity-50;
+}
+
+.button-text {
+    @apply relative z-10;
+}
+
+.button-overlay {
+    @apply absolute inset-0 bg-[#fde68a] opacity-0 transition-opacity duration-300;
+}
+
+.save-button {
+    @apply w-full;
+}
+</style>

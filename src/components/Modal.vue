@@ -9,20 +9,19 @@ const closeModal = () => {
 
 <template>
     <Transition name="modal">
-        <div v-if="props.show" class="fixed inset-0 z-50 flex items-center justify-center">
-            <div class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm" @click="closeModal"></div>
-            <div class="relative bg-zinc-900 rounded-lg shadow-lg w-full max-w-md m-4 overflow-hidden">
-                <div class="p-6">
-                    <div class="mb-4">
+        <div v-if="props.show" class="modal-container">
+            <div class="modal-backdrop" @click="closeModal"></div>
+            <div class="modal-content">
+                <div class="modal-inner">
+                    <div class="modal-header">
                         <slot name="header"></slot>
                     </div>
-                    <div class="mb-6">
+                    <div class="modal-body">
                         <slot name="body"></slot>
                     </div>
-                    <div class="flex justify-end">
+                    <div class="modal-footer">
                         <slot name="footer">
-                            <button @click="closeModal"
-                                class="bg-[#161618] text-white text-sm font-semibold px-4 py-2 hover:bg-[#fde68a] hover:text-black transition-colors duration-300">
+                            <button @click="closeModal" class="modal-close-button">
                                 Close
                             </button>
                         </slot>
@@ -34,6 +33,38 @@ const closeModal = () => {
 </template>
 
 <style scoped>
+.modal-container {
+    @apply fixed inset-0 z-50 flex items-center justify-center;
+}
+
+.modal-backdrop {
+    @apply absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm;
+}
+
+.modal-content {
+    @apply relative bg-zinc-900 rounded-lg shadow-lg w-full max-w-md m-4 overflow-hidden;
+}
+
+.modal-inner {
+    @apply p-6;
+}
+
+.modal-header {
+    @apply mb-4;
+}
+
+.modal-body {
+    @apply mb-6;
+}
+
+.modal-footer {
+    @apply flex justify-end;
+}
+
+.modal-close-button {
+    @apply bg-[#161618] text-white text-sm font-semibold px-4 py-2 hover:bg-[#fde68a] hover:text-black transition-colors duration-300;
+}
+
 .modal-enter-active,
 .modal-leave-active {
     transition: opacity 0.3s ease;

@@ -49,26 +49,41 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div class="flex items-center space-x-2">
-        <div :class="[
-            'w-3 h-3 rounded-full',
-            isServerUp
-                ? 'bg-[#fde68a] gumball-pulse'
-                : 'bg-[#161618] shadow-inner shadow-[#12121A] gumball-pulse-offline',
-        ]"></div>
-        <div class="text-white text-xs" v-if="isServerUp">
+    <div class="server-status-container">
+        <div :class="['status-indicator', isServerUp ? 'online' : 'offline']"></div>
+        <div class="server-info" v-if="isServerUp">
             <p>
                 {{ serverName }} {{ mission }} (Players: {{ numPlayers }} /
                 {{ maxPlayers }})
             </p>
         </div>
-        <div class="text-white text-xs" v-else>
+        <div class="server-info" v-else>
             <p>Server is offline</p>
         </div>
     </div>
 </template>
 
 <style scoped>
+.server-status-container {
+    @apply flex items-center space-x-2;
+}
+
+.status-indicator {
+    @apply w-3 h-3 rounded-full;
+}
+
+.status-indicator.online {
+    @apply bg-[#fde68a] gumball-pulse;
+}
+
+.status-indicator.offline {
+    @apply bg-[#161618] shadow-inner shadow-[#12121A] gumball-pulse-offline;
+}
+
+.server-info {
+    @apply text-white text-xs;
+}
+
 .gumball-pulse {
     animation: pulse-online 2.25s infinite;
 }

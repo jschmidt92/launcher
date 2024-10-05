@@ -32,18 +32,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div class="flex flex-col h-full justify-end">
-        <!-- Navigation row -->
-        <div class="flex-none mb-4">
+    <div class="tab-section">
+        <div class="tab-navigation">
             <nav>
-                <ul class="flex space-x-2">
+                <ul class="tab-list">
                     <li v-for="tab in tabs" :key="tab.id">
-                        <a href="#" @click.prevent="activeTab = tab.id" :class="[
-                            'py-2 px-2 font-light text-lg transition-all duration-300',
-                            activeTab === tab.id
-                                ? 'text-shadow-gold text-white'
-                                : 'text-gray-300 hover:text-white'
-                        ]">
+                        <a href="#" @click.prevent="activeTab = tab.id" :class="['tab-link', { 'active': activeTab === tab.id }]">
                             {{ tab.name }}
                         </a>
                     </li>
@@ -51,9 +45,8 @@ onUnmounted(() => {
             </nav>
         </div>
 
-        <!-- Cards row -->
-        <div class="flex-none h-1/2 relative overflow-x-hidden" ref="scrollContainer">
-            <div class="flex flex-row h-full absolute bottom-0 left-0">
+        <div class="card-container" ref="scrollContainer">
+            <div class="card-row">
                 <Card v-for="item in activeItems" :key="item.id" :title="item.title" :summary="item.summary"
                     :link="item.link" :image="item.image" />
             </div>
@@ -62,8 +55,36 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
+.tab-section {
+    @apply flex flex-col h-full justify-end;
+}
+
+.tab-navigation {
+    @apply flex-none mb-4;
+}
+
+.tab-list {
+    @apply flex space-x-2;
+}
+
+.tab-link {
+    @apply py-2 px-2 font-light text-lg transition-all duration-300 text-gray-300 hover:text-white;
+}
+
+.tab-link.active {
+    @apply text-shadow-gold text-white;
+}
+
+.card-container {
+    @apply flex-none h-1/2 relative overflow-x-hidden;
+}
+
+.card-row {
+    @apply flex flex-row h-full absolute bottom-0 left-0;
+}
+
 .text-shadow-gold {
-    color: #fde68a;
+    @apply text-[#fde68a];
     text-shadow: #fde68a 1px 0px 6px;
 }
 </style>
