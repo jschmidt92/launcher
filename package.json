@@ -1,6 +1,6 @@
 {
   "name": "pmc3-launcher",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "main": "dist-electron/main/index.js",
   "description": "Arma 3 PMC Simulator 3.0 Launcher",
   "author": "Jacob Schmidt",

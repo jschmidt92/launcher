@@ -6,7 +6,6 @@ import {
   Menu,
   nativeImage,
   Notification,
-  shell,
   Tray,
 } from "electron";
 import { createRequire } from "node:module";
@@ -17,7 +16,7 @@ import os from "node:os";
 import { GameDig } from "gamedig";
 import { spawn } from "child_process";
 import * as fs from "fs";
-import * as http from "http";
+import * as https from "https";
 import extract from "extract-zip";
 import log from "electron-log";
 import pkg from "electron-updater";
@@ -39,27 +38,27 @@ const dlServerUp = true;
 // const require = createRequire(import.meta.url);
 const sPath = path.join(app.getPath("userData"), "settings.json");
 const host = {
-  protocol: "http://",
+  protocol: "https://",
   domain: "mod.innovativedevsolutions.org",
   port: 80,
   mods: [
     {
-      path: "/dragonfly.zip",
+      path: "/@ArmaDragonflyClient.zip",
       versionKey: "dragonfly_version",
       versionUrl: "/dragonfly_version.json",
     },
     {
-      path: "/sof_client.zip",
+      path: "/@sof_client.zip",
       versionKey: "sof_client_version",
       versionUrl: "/sof_client_version.json",
     },
     {
-      path: "/sof_mod.zip",
+      path: "/@sof_mod.zip",
       versionKey: "sof_mod_version",
       versionUrl: "/sof_mod_version.json",
     },
     {
-      path: "/sof_server.zip",
+      path: "/@sof_server.zip",
       versionKey: "sof_server_version",
       versionUrl: "/sof_server_version.json",
     },
@@ -104,7 +103,7 @@ const icon = path.join(process.env.VITE_PUBLIC, "icon.ico");
 
 function fetchFileVersion(file: any) {
   return new Promise((resolve, reject) => {
-    http
+    https
       .get(host.protocol + host.domain + file.versionUrl, (res) => {
         let data = "";
 
@@ -128,7 +127,7 @@ function download(
   progressCallback: (progress: DownloadProgress) => void
 ): Promise<string> {
   return new Promise((resolve, reject) => {
-    http
+    https
       .get(url, (response) => {
         if (response.statusCode !== 200) {
           reject(
@@ -222,7 +221,7 @@ function launchGame(data: GameData) {
 
   const exePath = path.join(data.arma3path, "arma3_x64.exe");
   const modList: string[] = [
-    `-mod="!Workshop/@CBA_A3;!Workshop/@ace;@sof_client;@sof"`,
+    `-mod="!Workshop/@CBA_A3;!Workshop/@ace;@sof_client;@sof_mod"`,
   ];
   const options: string[] = data.join
     ? [
